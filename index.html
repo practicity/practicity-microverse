@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTI.CITY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="renderCanvas" tabindex="0"></canvas>
+    <canvas id="weatherCanvas" width="160" height="120"></canvas>
+    <canvas id="minimapCanvas" width="200" height="200"></canvas>
+
+    <div id="crosshair">+</div>
+    <div id="ui">ZQSD or Arrows = Move &nbsp;|&nbsp; SPACE & LSHIFT = Go UP & DOWN &nbsp;|&nbsp; ESC = Unlock</div>
+
+    <div id="object-label"></div>
+
+    <div id="interact-hint"></div>
+
+    <!-- Info popup -->
+    <div id="interaction-popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <div id="popup-inner">
+            <button id="popup-close" aria-label="Close">&times;</button>
+            <h2 id="popup-title"></h2>
+            <p  id="popup-description"></p>
+            <ul id="popup-links"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://cdn.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
