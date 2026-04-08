@@ -1,6 +1,6 @@
 //objects.js
-
 export const OBJECT_DEFINITIONS = [
+
     {
         name:  "Montesori Street West",
         model: "transport_street_straight.glb",
@@ -10,13 +10,28 @@ export const OBJECT_DEFINITIONS = [
         scale: 0.125
     },
     {
-        name:  "Montesori East NorthLights",
+        name:  "Montesori East to West Lights Right",
         model: "transport_street_light.glb",
-        mapXFrom: 0, mapXTo: 49, stepX: 4,
-        mapY: 49.55, mapZ: 0,
-        rotationZ: Math.PI, rotationY: Math.PI, rotationX: Math.PI * 1.5,
-        scale: 7.5
+        mapXFrom: 1, mapXTo: 100, stepX: 8,
+        mapY: 49.55,
+        mapZ: 0,
+        rotationX: Math.PI ,
+        rotationY: Math.PI /2,
+        rotationZ: Math.PI ,
+        scale: 0.07
     },
+    {
+        name:  "Montesori East to West Lights LEFT",
+        model: "transport_street_light.glb",
+        mapXFrom: 4, mapXTo: 96, stepX: 8,
+        mapY: 50.42,
+        mapZ: 0,
+        rotationX: Math.PI,
+        rotationY: Math.PI * 1.5,
+        rotationZ: Math.PI ,
+        scale: 0.07
+    },
+
     {
         name:  "Montesori Street East",
         model: "transport_street_straight.glb",
@@ -61,10 +76,10 @@ export const OBJECT_DEFINITIONS = [
     },
     
     {
-        name:  "Simofacto Industrial Ltd",
+        name:  "SIMFACTO Industrial Ltd",
         model: "building_factorysmall.glb",
         interactive: true,
-        description: "The Simofacto Factory manufactures high end industrial equipments. This plant is proud to be environmental friendly and is well known Practicity employer since 2005.",
+        description: "The SIMFACTO Factory manufactures high end industrial equipments. This plant is aims to keep high environmental requirements and is a well known Practicity employer since 2005.",
         urls: ["https://google.com", "https://practi.city"],
         mapX: 70, 
         mapY: 68,

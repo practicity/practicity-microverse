@@ -1,3 +1,5 @@
+// main.js
+
 import {
     CELL_SIZE,
     GRAVITY, FOG_MODE,
@@ -17,36 +19,63 @@ import {
     LABEL_TOGGLE_KEY_CODE
 } from "./config.js";
 
-import { CityMap, MAP_WORLD } from "./map.js";
-import { Minimap } from "./minimap.js";
-import { initWeather, WeatherWidget } from './weather.js';
+import { CityMap, MAP_WORLD }           from "./map.js";
+import { Minimap }                       from "./minimap.js";
+import { initWeather, WeatherWidget }    from './weather.js';
+import { getStartPosition, syncURLWithPosition } from './urlParams.js';
 
-const canvas = document.getElementById("renderCanvas");
+// ── DOM ──────────────────────────────────────────────────────────────────────
+
+const canvas       = document.getElementById("renderCanvas");
+const objectLabel  = document.getElementById("object-label");
+const popup        = document.getElementById("interaction-popup");
+const popupTitle   = document.getElementById("popup-title");
+const popupDesc    = document.getElementById("popup-description");
+const popupLinks   = document.getElementById("popup-links");
+const popupClose   = document.getElementById("popup-close");
+const interactHint = document.getElementById("interact-hint");
+
+// ── ENGINE & SCENE ───────────────────────────────────────────────────────────
+
 const engine = new BABYLON.Engine(canvas, true);
-const objectLabel = document.getElementById("object-label");
+const scene  = new BABYLON.Scene(engine);
 
-let labelEnabled = false;
-
-
-// ── SCENE ────────────────────────────────────────────────────────────────────
-
-const scene = new BABYLON.Scene(engine);
-scene.fogMode        = FOG_MODE;
-scene.fogStart       = FOG_START;
-scene.fogEnd         = FOG_END;
-scene.fogColor       = new BABYLON.Color3(FOG_COLOR.r, FOG_COLOR.g, FOG_COLOR.b);
-scene.clearColor     = new BABYLON.Color4(CLEAR_COLOR.r, CLEAR_COLOR.g, CLEAR_COLOR.b, CLEAR_COLOR.a);
-scene.gravity        = new BABYLON.Vector3(GRAVITY.x, GRAVITY.y, GRAVITY.z);
+scene.fogMode           = FOG_MODE;
+scene.fogStart          = FOG_START;
+scene.fogEnd            = FOG_END;
+scene.fogColor          = new BABYLON.Color3(FOG_COLOR.r, FOG_COLOR.g, FOG_COLOR.b);
+scene.clearColor        = new BABYLON.Color4(CLEAR_COLOR.r, CLEAR_COLOR.g, CLEAR_COLOR.b, CLEAR_COLOR.a);
+scene.gravity           = new BABYLON.Vector3(GRAVITY.x, GRAVITY.y, GRAVITY.z);
 scene.collisionsEnabled = true;
 
 // ── CAMERA ───────────────────────────────────────────────────────────────────
 
-const startX = CAMERA_START_CELL_X + 0.5;
-const startZ = CAMERA_START_CELL_Z;
+// URL params override config defaults
+const { position: startPosition, yaw: startYaw, pitch: startPitch, fromURL } = getStartPosition(
+    CAMERA_START_CELL_X,
+    CAMERA_START_CELL_Z,
+    CAMERA_HEIGHT
+);
 
-const camera = new BABYLON.UniversalCamera("cam",
-    new BABYLON.Vector3(startX, CAMERA_HEIGHT, startZ), scene);
-camera.setTarget(new BABYLON.Vector3(startX, CAMERA_HEIGHT, startZ + CAMERA_LOOK_AHEAD)); //camera position north
+if (fromURL) {
+    console.log(`[URL] Spawning at x=${startPosition.x.toFixed(1)} y=${startPosition.y.toFixed(1)} z=${startPosition.z.toFixed(1)} yaw=${startYaw.toFixed(3)}`);
+}
+
+const camera = new BABYLON.UniversalCamera("cam", startPosition, scene);
+
+// Apply yaw and pitch from URL, or default look-ahead (+Z / north)
+camera.rotation.y = startYaw;
+camera.rotation.x = startPitch; // positive = look down, negative = look up
+
+
+if (!fromURL) {
+    camera.setTarget(new BABYLON.Vector3(
+        startPosition.x,
+        startPosition.y,
+        startPosition.z + CAMERA_LOOK_AHEAD
+    ));
+}
+
 camera.minZ               = CAMERA_MIN_Z;
 camera.speed              = CAMERA_SPEED;
 camera.angularSensibility = CAMERA_ANGULAR_SENSIBILITY;
@@ -63,6 +92,10 @@ camera.keysLeft     = KEYS_LEFT;
 camera.keysRight    = KEYS_RIGHT;
 camera.keysUpward   = KEYS_UPWARD;
 camera.keysDownward = KEYS_DOWNWARD;
+
+
+
+
 
 // ── POINTER LOCK ─────────────────────────────────────────────────────────────
 
@@ -83,8 +116,8 @@ const skybox = BABYLON.MeshBuilder.CreateBox("sky", { size: SKYBOX_SIZE }, scene
 const skyMat = new BABYLON.StandardMaterial("skyMat", scene);
 skyMat.backFaceCulling = false;
 skyMat.disableLighting = true;
-skybox.material   = skyMat;
-skybox.isPickable = false;
+skybox.material        = skyMat;
+skybox.isPickable      = false;
 
 // ── WEATHER ──────────────────────────────────────────────────────────────────
 
@@ -126,25 +159,15 @@ window.addEventListener("keydown", (e) => {
 
 // ── MINIMAP ──────────────────────────────────────────────────────────────────
 
-const minimap = new Minimap("minimapCanvas", scene, camera);
-
-// ── WEATHER WIDGET ───────────────────────────────────────────────────────────
-
-const weatherWidget = new WeatherWidget('weatherCanvas');
+const minimap       = new Minimap("minimapCanvas", scene, camera);
+const weatherWidget = new WeatherWidget("weatherCanvas");
 
 // ── INTERACTION SYSTEM ───────────────────────────────────────────────────────
 
-const popup        = document.getElementById("interaction-popup");
-const popupTitle   = document.getElementById("popup-title");
-const popupDesc    = document.getElementById("popup-description");
-const popupLinks   = document.getElementById("popup-links");
-const popupClose   = document.getElementById("popup-close");
-const interactHint = document.getElementById("interact-hint");
+let nearbyMesh  = null;
+let popupOpen   = false;
+let labelEnabled = false;
 
-let nearbyMesh = null;
-let popupOpen  = false;
-
-/** Open the info popup */
 function openPopup(metadata) {
     popupTitle.textContent = metadata.objectName ?? "Object";
 
@@ -168,14 +191,10 @@ function openPopup(metadata) {
     popup.classList.add("visible");
     popupOpen = true;
 
-    if (document.pointerLockElement === canvas) {
-        document.exitPointerLock();
-    }
-
+    if (document.pointerLockElement === canvas) document.exitPointerLock();
     camera.detachControl(canvas);
 }
 
-/** Close the popup and restore controls */
 function closePopup() {
     popup.classList.remove("visible");
     popupOpen = false;
@@ -189,7 +208,7 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && popupOpen) closePopup();
 });
 
-// ── Per-frame: raycast from centre of screen, show hint if interactive ───────
+// ── PER-FRAME: RAYCAST ───────────────────────────────────────────────────────
 
 scene.onBeforeRenderObservable.add(() => {
     if (popupOpen) return;
@@ -201,16 +220,16 @@ scene.onBeforeRenderObservable.add(() => {
         camera
     );
 
-    // ── Label: any named mesh ─────────────────────────────────────────────
+    // Label: any named mesh
     const labelHit = scene.pickWithRay(
         ray,
         (mesh) => mesh.isPickable && mesh.name && mesh.name !== "" && mesh.name !== "__root__"
     );
 
     if (labelEnabled && labelHit.hit && labelHit.pickedMesh) {
-        const name = labelHit.pickedMesh.metadata?.objectName 
-                ?? labelHit.pickedMesh.name 
-                ?? "";
+        const name = labelHit.pickedMesh.metadata?.objectName
+                  ?? labelHit.pickedMesh.name
+                  ?? "";
         if (name) {
             objectLabel.textContent = name;
             objectLabel.classList.add("visible");
@@ -221,7 +240,7 @@ scene.onBeforeRenderObservable.add(() => {
         objectLabel.classList.remove("visible");
     }
 
-    // ── Interaction: only interactive meshes ──────────────────────────────
+    // Interaction: only interactive meshes
     const hit = scene.pickWithRay(
         ray,
         (mesh) => mesh.isPickable && mesh.metadata?.interactive
@@ -238,39 +257,32 @@ scene.onBeforeRenderObservable.add(() => {
     }
 });
 
-
-// ── Interaction key ───────────────────────────────────────────────────────────
+// ── KEYDOWN ACTIONS ──────────────────────────────────────────────────────────
 
 window.addEventListener("keydown", (e) => {
-    const match = e.key.toUpperCase() === INTERACTION_KEY || 
-                  e.code === INTERACTION_KEY_CODE;
-    if (!match) return;
-    if (popupOpen || !nearbyMesh) return;
-    openPopup(nearbyMesh.metadata);
+    // Interact
+    if (
+        (e.key.toUpperCase() === INTERACTION_KEY || e.code === INTERACTION_KEY_CODE) &&
+        !popupOpen && nearbyMesh
+    ) {
+        openPopup(nearbyMesh.metadata);
+        return;
+    }
+
+    // Label toggle
+    if (e.key.toUpperCase() === LABEL_TOGGLE_KEY || e.code === LABEL_TOGGLE_KEY_CODE) {
+        labelEnabled = !labelEnabled;
+        if (!labelEnabled) objectLabel.classList.remove("visible");
+        return;
+    }
 });
-
-
-// ── Object label key ───────────────────────────────────────────────────────────
-
-// Toggle label display
-window.addEventListener("keydown", (e) => {
-    const match = e.key.toUpperCase() === LABEL_TOGGLE_KEY ||
-                  e.code === LABEL_TOGGLE_KEY_CODE;
-    if (!match) return;
-    labelEnabled = !labelEnabled;
-    if (!labelEnabled) objectLabel.classList.remove("visible");
-});
-
-
-
-
-
 
 // ── RENDER LOOP ──────────────────────────────────────────────────────────────
 
 engine.runRenderLoop(() => {
     scene.render();
     minimap.update(camera.position);
+    syncURLWithPosition(camera.position.x, camera.position.z); // keep URL in sync
 });
 
 window.addEventListener("resize", () => engine.resize());
