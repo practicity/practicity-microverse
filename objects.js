@@ -76,7 +76,7 @@ export const OBJECT_DEFINITIONS = [
     },
     
     {
-        id : "SIMFAC",
+        locationid : "SIMFAC",
         name:  "SIMFACTO Industrial Ltd",
         model: "building_factorysmall.glb",
         interactive: true,
