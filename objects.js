@@ -82,7 +82,7 @@ export const OBJECT_DEFINITIONS = [
         mapX: 70, 
         mapY: 68,
         mapZ: -0.0,
-        scale: 1
+        scale: 1,
         cameraStartX: 70,
         cameraStartZ: 2,
         cameraStartY: 66,
