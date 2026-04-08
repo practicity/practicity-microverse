@@ -10,6 +10,8 @@ import { GRID_SIZE, CELL_SIZE } from './config.js';
  */
 
 
+export const interactMode = new URLSearchParams(window.location.search).get('interact') === 'true';
+
 export function getStartPosition(defaultCellX, defaultCellZ, defaultHeight, defaultYaw = 0, defaultPitch = 0) {
     const params = new URLSearchParams(window.location.search);
     const loc    = params.get("loc");   // x,z  or x,y,z
@@ -77,10 +79,12 @@ export function syncURLWithPosition(camera) {
         const p   = camera.position;
         const yaw = camera.rotation.y;
 
+        const existing = new URLSearchParams(window.location.search);
         const params = new URLSearchParams({
             loc: `${p.x.toFixed(1)},${p.y.toFixed(1)},${p.z.toFixed(1)}`,
             yaw: yaw.toFixed(3)
         });
+        if (existing.has('interact')) params.set('interact', existing.get('interact'));
         window.history.replaceState({}, "", `?${params.toString()}`);
     }, 600);
 }

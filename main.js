@@ -22,7 +22,7 @@ import {
 import { CityMap, MAP_WORLD }           from "./map.js";
 import { Minimap }                       from "./minimap.js";
 import { initWeather, WeatherWidget }    from './weather.js';
-import { getStartPosition, syncURLWithPosition } from './urlParams.js';
+import { getStartPosition, syncURLWithPosition, interactMode } from './urlParams.js';
 
 // ── DOM ──────────────────────────────────────────────────────────────────────
 
@@ -164,9 +164,11 @@ const weatherWidget = new WeatherWidget("weatherCanvas");
 
 // ── INTERACTION SYSTEM ───────────────────────────────────────────────────────
 
-let nearbyMesh  = null;
-let popupOpen   = false;
-let labelEnabled = false;
+let nearbyMesh      = null;
+let prevNearbyMesh  = null;
+let popupOpen       = false;
+let labelEnabled    = false;
+let autoOpenEnabled = interactMode; // true on load when interact=true; toggled by user actions
 
 function openPopup(metadata) {
     popupTitle.textContent = metadata.objectName ?? "Object";
@@ -251,10 +253,17 @@ scene.onBeforeRenderObservable.add(() => {
         const name = hit.pickedMesh.metadata?.objectName ?? "object";
         interactHint.textContent = `[${INTERACTION_KEY}] Interact with ${name}`;
         interactHint.classList.add("visible");
+
+        if (interactMode && autoOpenEnabled && nearbyMesh !== prevNearbyMesh) {
+            autoOpenEnabled = false;
+            openPopup(nearbyMesh.metadata);
+        }
     } else {
         nearbyMesh = null;
         interactHint.classList.remove("visible");
     }
+
+    prevNearbyMesh = nearbyMesh;
 });
 
 // ── KEYDOWN ACTIONS ──────────────────────────────────────────────────────────

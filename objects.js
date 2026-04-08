@@ -77,35 +77,34 @@ export const OBJECT_DEFINITIONS = [
     
     {
         locationid : "SIMFAC",
-        name:  "SIMFACTO Industrial Ltd",
         model: "building_factorysmall.glb",
         interactive: true,
-        description: "The SIMFACTO Factory manufactures high end industrial equipments. This plant is aims to keep high environmental requirements and is a well known Practicity employer since 2005.",
-        urls: ["https://google.com", "https://practi.city"],
         mapX: 70, 
         mapY: 68,
         mapZ: -0.0,
+        scale: 1
         cameraStartX: 70,
         cameraStartZ: 2,
         cameraStartY: 66,
         cameraStartPitch: 0.5,
         cameraStartYaw: 0,
         rotationY: Math.PI,
-        scale: 1
     },
 
-
     {
-        name:  "PRACTI.CITY Court House",
+        locationid : "COURT",
         model: "building_courthouse.glb",
         interactive: true,
-        description: "The Courthouse was build by the founders of the city in 2014. The municipality Hall delivers several sercices like Social Services, City Roads and Bridges Infrastructure, Schools and Education council and many more",
-        urls: ["https://google.com", "https://practi.city"],
         rotationZ: Math.PI/2, rotationY: Math.PI/2, rotationX: Math.PI * 1.5,
         mapX: 50.76 , mapY: 53,
         mapZ: 0   ,
         rotationY: Math.PI,
         scale: 20,
+        cameraStartX: 50,
+        cameraStartZ: 2,
+        cameraStartY: 53,
+        cameraStartPitch: 0.5,
+        cameraStartYaw: 0,
     },
 
     {
