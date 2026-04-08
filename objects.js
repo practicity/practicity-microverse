@@ -76,6 +76,7 @@ export const OBJECT_DEFINITIONS = [
     },
     
     {
+        id : "SIMFAC",
         name:  "SIMFACTO Industrial Ltd",
         model: "building_factorysmall.glb",
         interactive: true,
@@ -84,8 +85,13 @@ export const OBJECT_DEFINITIONS = [
         mapX: 70, 
         mapY: 68,
         mapZ: -0.0,
+        cameraStartX: 70,
+        cameraStartZ: 2,
+        cameraStartY: 66,
+        cameraStartPitch: 0.5,
+        cameraStartYaw: 0,
         rotationY: Math.PI,
-        scale: 1// was 0.5 (÷4)
+        scale: 1
     },
 
 
