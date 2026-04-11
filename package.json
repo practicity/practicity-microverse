@@ -1,0 +1,26 @@
+{
+  "name": "practicity-microverse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicity/practicity-microverse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/practicity/practicity-microverse/issues"
+  },
+  "homepage": "https://github.com/practicity/practicity-microverse#readme",
+  "devDependencies": {
+    "vite": "^8.0.8"
+  }
+}
