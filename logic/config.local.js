@@ -1,7 +1,7 @@
 // config.local.js  —  local development  (?env=local)
 
-// ── CONTENT SERVER ────────────────────────────────────────────────────────────
-export const PRACTICITYCONTENT_BASEURL  = "http://127.0.0.1:4000/practicity-content";
+// ── CMS CONTENT SERVER ────────────────────────────────────────────────────────────
+export const PRACTICITYCONTENT_BASEURL  = "http://127.0.0.1:4000";
 export const LOCATIONS_API_URL          = `${PRACTICITYCONTENT_BASEURL}/api/locations.json`;
 
 // ── GRID / MAP ────────────────────────────────────────────────────────────────
@@ -64,7 +64,7 @@ export const GRID_Y_OFFSET              = 0.01;
 
 // ── GROUND ───────────────────────────────────────────────────────────────────
 export const GROUND_SUBDIVISIONS    = 5;
-export const GROUND_TEXTURE_PATH    = "assets/texture_grass.jpg";
+export const GROUND_TEXTURE_PATH    = "public/assets/texture_grass.jpg";
 export const GROUND_TEXTURE_SCALE   = 1;
 export const GROUND_METALLIC        = 0;
 export const GROUND_ROUGHNESS       = 2;

@@ -1,8 +1,10 @@
 // main.js
 
-const _configFile = new URLSearchParams(location.search).get("env") === "local"
-    ? "./config.local.js"
-    : "./config.js";
+import * as configProd from "./config.js";
+import * as configLocal from "./config.local.js";
+
+const isLocal = new URLSearchParams(location.search).get("env") === "local";
+const config = isLocal ? configLocal : configProd;
 
 const {
     CELL_SIZE,
@@ -23,12 +25,14 @@ const {
     LABEL_TOGGLE_KEY_CODE,
     LOCATIONS_API_URL,
     PRACTICITYCONTENT_BASEURL
-} = await import(_configFile);
+} = config;
 
-import { CityMap, MAP_WORLD }           from "./map.js";
-import { Minimap }                       from "./minimap.js";
-import { initWeather, WeatherWidget }    from './weather.js';
-import { getLocationStart, syncURLWithPosition } from './urlParams.js';
+
+import { CityMap, MAP_WORLD }                    from "./map.js";
+import { Minimap }                               from "./minimap.js";
+import { initWeather, WeatherWidget }            from "./weather.js";
+import { getLocationStart, syncURLWithPosition } from "./urlParams.js";
+
 
 // ── DOM ──────────────────────────────────────────────────────────────────────
 
