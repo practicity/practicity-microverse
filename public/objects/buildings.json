@@ -231,8 +231,8 @@
         "cameraStartX": 15.766,
         "cameraStartY": 0.711,
         "cameraStartZ": 1.859,
-        "cameraStartPitch": -0.277,
-        "cameraStartYaw": -16.737
+        "cameraStartPitch": -0.445,
+        "cameraStartYaw": -16.739
     },
 
     {
@@ -321,7 +321,23 @@
         "cameraStartYaw": -13.21
     },
 
+    {
+        "locationid": "PIAGET",
+        "model": "buildings/piaget.glb",
+        "interactive": true,
+        "rotationY": "Math.PI * 1",
+        "scale": 1,
+        "highlight": true,  
+"mapX": 21,
+"mapY": 11,
+        "mapZ": 0,
+"cameraStartX": 17.336,
+"cameraStartY": 5.12,
+"cameraStartZ": 2.298,
+"cameraStartPitch": -0.237,
+"cameraStartYaw": 3.712
 
+    },
 
     {
         "locationid": "SIMFAC",
