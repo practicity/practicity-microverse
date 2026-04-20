@@ -499,7 +499,24 @@
         "cameraStartZ": 2.009,
         "cameraStartPitch": -0.413,
         "cameraStartYaw": -2.6
+    },
+
+    {
+        "locationid": "WBUSC",
+        "model": "buildings/wbusc.glb",
+        "interactive": true,
+        "mapX": 0,
+        "mapY": -3,
+        "mapZ": 0,
+        "rotationY": "Math.PI",
+        "scale": 1,
+        "cameraStartX": 28.292,
+        "cameraStartY": -40.106,
+        "cameraStartZ": 2.009,
+        "cameraStartPitch": -0.413,
+        "cameraStartYaw": -2.6
     }
-   
+
+
 
 ]
