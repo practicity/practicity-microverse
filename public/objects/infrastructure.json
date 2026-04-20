@@ -111,24 +111,21 @@
         "model": "infrastructures/transport_street_light.glb",
         "mapX": -0.95,
         "mapYFrom": -48.5, "mapYTo": -1,
+        "rotationY": "Math.PI*1.5",
         "stepY": 8,
         "mapZ": 0,
-        "rotationX": 3.141593,
-        "rotationY": 1.570796,
-        "rotationZ": 3.141593,
-        "scale": 0.07
+        "scale": 1
     },
+
     {
         "name": "Montesori North Lights Right",
         "model": "infrastructures/transport_street_light.glb",
         "mapX": -0.05,
         "mapYFrom": 1, "mapYTo": 50,
+        "rotationY": "Math.PI*0.5",
         "stepY": 8,
         "mapZ": 0,
-        "rotationX": 3.141593,
-        "rotationY": 4.712389,
-        "rotationZ": 3.141593,
-        "scale": 0.07
+        "scale": 1
     },
 
 
@@ -149,7 +146,34 @@
         "mapY": -1,
         "mapZ": 0.005,
         "scale": 1
+    },
+
+
+
+    {
+        "name": "I26 South",
+        "model": "infrastructures/transport_road.glb",
+        "mapYFrom": -49,
+        "mapYTo": -1,
+        "mapX": -39.5,
+        "mapZ": 0,
+        "rotationY": 3.141593,
+        "scale": 1
+    },
+    
+
+
+    {
+        "name": "I26 North",
+        "model": "infrastructures/transport_road.glb",
+        "mapYFrom": 1, "mapYTo": 50,
+        "mapX": -39.5,
+        "mapZ": 0,
+        "rotationY": 3.141593,
+        "scale": 1
     }
+
+
 
 
 ]

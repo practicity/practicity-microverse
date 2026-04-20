@@ -5,7 +5,9 @@
 
 const WEATHER_CONFIG = {
     apiKey:    "ab16871ed2f23f9a204a9b7c1c7dd6c0",
-    lat:       45.7640,
+    //lat: 35.689487, // Tokyo
+    //lon: 139.691711, 
+    lat:       45.7640, //Lyon
     lon:        4.8357,
     refreshMs: 10 * 60 * 1000,
 };

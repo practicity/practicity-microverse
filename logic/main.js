@@ -28,7 +28,6 @@ const {
 
 
 import { CityMap, MAP_WORLD }                    from "./map.js";
-import { Minimap }                               from "./minimap.js";
 import { initWeather, WeatherWidget }            from "./weather.js";
 import { getLocationStart, syncURLWithPosition } from "./urlParams.js";
 
@@ -193,9 +192,6 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "f" || e.key === "F") flashlight.setEnabled(!flashlight.isEnabled());
 });
 
-// ── MINIMAP ──────────────────────────────────────────────────────────────────
-
-const minimap       = new Minimap("minimapCanvas", scene, camera);
 const weatherWidget = new WeatherWidget("weatherCanvas");
 
 // ── INTERACTION POPUP ───────────────────────────────────────────────────────
@@ -454,7 +450,6 @@ locatorCopy.addEventListener("click", () => {
 
 engine.runRenderLoop(() => {
     scene.render();
-    minimap.update(camera.position);
     syncURLWithPosition(camera);
     locatorCoords.textContent = locatorText();
 });

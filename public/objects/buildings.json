@@ -57,7 +57,7 @@
         "model": "buildings/court.glb",
         "interactive": true,
         "mapX": -1,
-        "mapY": -4, 
+        "mapY": -8, 
         "mapZ": 0,
         "scale": 1,
         "cameraStartX": -0.09,
@@ -87,14 +87,14 @@
         "model": "buildings/cinematrix.glb",
         "interactive": true,
         "mapX": -1,
-        "mapY": 4,
+        "mapY": 3,
         "mapZ": 0,
         "scale": 1,
-        "cameraStartX": 1.089,
-        "cameraStartY": 2.061,
-        "cameraStartZ": 1.683,
-        "cameraStartPitch": -0.278,
-        "cameraStartYaw": 5.65
+        "cameraStartX": -0.396,
+        "cameraStartY": 3.78,
+        "cameraStartZ": 0.557,
+        "cameraStartPitch": -0.125,
+        "cameraStartYaw": 6.582
     },
 
 
@@ -113,6 +113,42 @@
         "cameraStartPitch": -0.102,
         "cameraStartYaw": 7.129
     },
+
+
+    {
+        "locationid": "DERRICK",
+        "model": "buildings/derrick.glb",
+        "interactive": true,
+        "rotationY": "Math.PI/0.5",
+        "scale": 1,
+        "highlight" : true,
+        "mapX": -40,
+        "mapY": 40,
+        "mapZ": 0,
+        "cameraStartX": -49.65,
+        "cameraStartY": 40.676,
+        "cameraStartZ": 3.418,
+        "cameraStartPitch": 0.478,
+        "cameraStartYaw": -8.663
+    },
+
+    {
+        "locationid": "DEUXGROS",
+        "model": "buildings/deuxgros.glb",
+        "interactive": true,
+        "rotationY": "Math.PI*2",
+        "scale": 1,
+        "highlight" : true,
+        "mapX": -1,
+        "mapY": -4,
+        "mapZ": 0,
+        "cameraStartX": 0.652,
+        "cameraStartY": 0.029,
+        "cameraStartZ": 2.313,
+        "cameraStartPitch": -0.575,
+        "cameraStartYaw": -18.085
+    },
+
 
     {
         "locationid": "DEWEY",
@@ -148,22 +184,6 @@
 
 
 
-    {
-        "locationid": "DERRICK",
-        "model": "buildings/derrick.glb",
-        "interactive": true,
-        "rotationY": "Math.PI",
-        "scale": 1,
-        "highlight": true,
-        "mapX": -48,
-        "mapY": 46,
-        "mapZ": 0,
-        "cameraStartX": -41.479,
-        "cameraStartY": 41.212,
-        "cameraStartZ": 7.43,
-        "cameraStartPitch": -0.414,
-        "cameraStartYaw": -7.039
-    },
 
 
     {
@@ -193,11 +213,11 @@
         "mapX": 0, 
         "mapY": 2,
         "mapZ": 0,
-        "cameraStartX": -0.955,
-        "cameraStartY": 2.112,
-        "cameraStartZ": 0.79,
-        "cameraStartPitch": -0.258,
-        "cameraStartYaw": -3.723
+        "cameraStartX": -0.813,
+        "cameraStartY": 2.525,
+        "cameraStartZ": 0.509,
+        "cameraStartPitch": -0.064,
+        "cameraStartYaw": 2.36
     },
 
 
@@ -270,8 +290,8 @@
     },
 
     {
-        "locationid": "KOLB",
-        "model": "buildings/kolb.glb",
+        "locationid": "KOLBLIB",
+        "model": "buildings/kolblib.glb",
         "interactive": true,
         "rotationY": "Math.PI",
         "scale": 1,
@@ -285,6 +305,42 @@
         "cameraStartPitch": -0.217,
         "cameraStartYaw": -18.431
     },
+
+    {
+        "locationid": "MATHESIS",
+        "model": "buildings/mathesis.glb",
+        "interactive": true,
+        "scale": 1,
+        "highlight": true,  
+        "mapX": -40,
+        "mapY": 20,
+        "mapZ": 0,
+        "cameraStartX": -46.452,
+        "cameraStartY": 21.784,
+        "cameraStartZ": 0.957,
+        "cameraStartPitch": -0.354,
+        "cameraStartYaw": -7.982
+    },
+
+    {
+        "locationid": "NUTON",
+        "model": "buildings/nuton.glb",
+        "interactive": true,
+        "scale": 1,
+        "rotationY": "Math.PI*1.5",
+        "highlight": true,  
+        "mapX": -6,
+        "mapY": 0,
+        "mapZ": 0,
+        "cameraStartX": -2.029,
+        "cameraStartY": -1.62,
+        "cameraStartZ": 2.201,
+        "cameraStartPitch": -0.364,
+        "cameraStartYaw": -19.681
+    },
+
+
+
 
     {
         "locationid": "MURPHY",
@@ -328,16 +384,89 @@
         "rotationY": "Math.PI * 1",
         "scale": 1,
         "highlight": true,  
-"mapX": 21,
-"mapY": 11,
+        "mapX": 21,
+        "mapY": 11,
         "mapZ": 0,
-"cameraStartX": 17.336,
-"cameraStartY": 5.12,
-"cameraStartZ": 2.298,
-"cameraStartPitch": -0.237,
-"cameraStartYaw": 3.712
+        "cameraStartX": 17.336,
+        "cameraStartY": 5.12,
+        "cameraStartZ": 2.298,
+        "cameraStartPitch": -0.237,
+        "cameraStartYaw": 3.712
+    },
+
+
+    {
+        "locationid": "POLICEST",
+        "model": "buildings/policest.glb",
+        "interactive": true,
+        "rotationY": "Math.PI * 2",
+        "scale": 1,
+        "highlight": true,
+        "mapX": 8,
+        "mapY": -8,
+        "mapZ": 0,
+        "cameraStartX": 7.167,
+        "cameraStartY": 0.551,
+        "cameraStartZ": 1.316,
+        "cameraStartPitch": -0.143,
+        "cameraStartYaw": -4.987
+    },
+
+
+    {
+        "locationid": "PRACTIPORT",
+        "model": "buildings/practiport.glb",
+        "interactive": true,
+        "rotationY": "Math.PI * 2",
+        "scale": 1,
+        "highlight": true,
+        "mapX": -40,
+        "mapY": 12,
+        "mapZ": 0,
+        "cameraStartX": -35.152,
+        "cameraStartY": 29.443,
+        "cameraStartZ": 3.476,
+        "cameraStartPitch": -0.342,
+        "cameraStartYaw": -13.535
+    },
+
+    {
+        "locationid": "PRAXIS",
+        "model": "buildings/praxis.glb",
+        "interactive": true,
+        "rotationY": "Math.PI/0.5",
+        "scale": 1,
+        "highlight": true,
+        "mapX": -1,
+        "mapY": 4,
+        "mapZ": 0,
+        "cameraStartX": -0.1,
+        "cameraStartY": 6.234,
+        "cameraStartZ": 0.657,
+        "cameraStartPitch": -0.28,
+        "cameraStartYaw": -18.231
+    },
+
+
+
+    {
+        "locationid": "RASMUSSEN",
+        "model": "buildings/rasmussen.glb",
+        "interactive": true,
+        "rotationY": "Math.PI * 2",
+        "scale": 1,
+        "highlight": true,
+        "mapX": -5,
+        "mapY": -50,
+        "mapZ": 0,
+        "cameraStartX": 2.301,
+        "cameraStartY": -35.363,
+        "cameraStartZ": 4.566,
+        "cameraStartPitch": -0.336,
+        "cameraStartYaw": -11.625
 
     },
+
 
     {
         "locationid": "SIMFAC",
