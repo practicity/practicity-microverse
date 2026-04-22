@@ -35,7 +35,7 @@
 
     {
         "locationid": "ARTWAPT",
-        "model": "buildings/tmp_artwapt.glb",
+        "model": "buildings/artwapt.glb",
         "interactive": true,
         "mapX": 46.5,
         "mapY": 17,
@@ -43,7 +43,7 @@
         "rotationY": 4.712389,
         "rotationX": 3.141593,
         "rotationZ": 3.141593,
-        "scale": 1.8,
+        "scale": 1,
         "cameraStartY": -9.66,
         "cameraStartZ": 8.396,
         "cameraStartX": 44.89,
