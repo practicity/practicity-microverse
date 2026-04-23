@@ -3,6 +3,7 @@
 /* for index.html */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { overflow: hidden; background: #000; }
+#renderCanvas { touch-action: none; }
 
 /** LOADING SCREEN **/
 #loading-screen {

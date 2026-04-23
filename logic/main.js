@@ -505,13 +505,15 @@ if (isMobile) {
     let dragId     = null;
     let touchOrigin = null;
     canvas.addEventListener("touchstart", e => {
+        e.preventDefault();
         if (dragId === null) {
             const t    = e.changedTouches[0];
             dragId     = t.identifier;
             touchOrigin = { x: t.clientX, y: t.clientY };
         }
-    }, { passive: true });
+    }, { passive: false });
     canvas.addEventListener("touchmove", e => {
+        e.preventDefault();
         if (dragId === null) return;
         let t = null;
         for (let i = 0; i < e.touches.length; i++) {
@@ -524,7 +526,7 @@ if (isMobile) {
         camera.rotation.x  -= dy * 0.005;
         camera.rotation.x   = Math.max(-Math.PI * 0.45, Math.min(Math.PI * 0.45, camera.rotation.x));
         touchOrigin = { x: t.clientX, y: t.clientY };
-    }, { passive: true });
+    }, { passive: false });
     const endDrag = e => {
         for (let i = 0; i < e.changedTouches.length; i++) {
             if (e.changedTouches[i].identifier === dragId) { dragId = null; touchOrigin = null; break; }
