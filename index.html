@@ -21,7 +21,9 @@
     <canvas id="weatherCanvas" width="160" height="120"></canvas>
 
     <div id="crosshair">+</div>
-    <div id="ui">ZQSD or Arrows = Move &nbsp;|&nbsp; SPACE & LSHIFT = Go UP & DOWN &nbsp;|&nbsp; ESC = Unlock</div>
+    <div id="ui">
+        <span id="ui-nav">[SPACE BAR] : Forward in Mouse Direction</span><span id="ui-interact"></span>
+    </div>
 
     <div id="locator">
         <div id="locator-header">
@@ -33,8 +35,6 @@
     </div>
 
     <div id="object-label"></div>
-
-    <div id="interact-hint"></div>
 
     <!-- Mobile controls (shown only on touch devices) -->
     <div id="mobile-controls">

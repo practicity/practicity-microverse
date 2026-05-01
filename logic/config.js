@@ -41,12 +41,12 @@ export const POINTER_LOCK_DELAY     = 100;
 export const SKYBOX_SIZE            = 200;
 
 // ── INTERACTION ───────────────────────────────────────────────────────────────
-export const KEYS_UP       = [90, 38];   // Z + ArrowUp
-export const KEYS_DOWN     = [83, 40];   // S + ArrowDown
-export const KEYS_LEFT     = [81, 37];   // Q + ArrowLeft
-export const KEYS_RIGHT    = [68, 39];   // D + ArrowRight
-export const KEYS_UPWARD   = [32];       // Space
-export const KEYS_DOWNWARD = [16];       // LShift
+export const KEYS_UP       = [32, 38];   // Space + ArrowUp (forward in mouse direction)
+export const KEYS_DOWN     = [];
+export const KEYS_LEFT     = [];
+export const KEYS_RIGHT    = [];
+export const KEYS_UPWARD   = [];
+export const KEYS_DOWNWARD = [];
 
 export const INTERACTION_MAX_DISTANCE   = 40;
 export const INTERACTION_KEY            = "E";

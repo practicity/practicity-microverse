@@ -55,7 +55,7 @@ const popupArticles       = document.getElementById("popup-articles");
 const popupArticlesList   = document.getElementById("popup-articles-list");
 const popupLinks          = document.getElementById("popup-links");
 const popupClose          = document.getElementById("popup-close");
-const interactHint        = document.getElementById("interact-hint");
+const uiInteract          = document.getElementById("ui-interact");
 
 // ── LOCATIONS DATA ────────────────────────────────────────────────────────────
 
@@ -389,8 +389,7 @@ scene.onBeforeRenderObservable.add(() => {
             const meta = hit.pickedMesh.metadata ?? {};
             const locData = meta.locationid ? locationsMap.get(meta.locationid) : null;
             const name = locData?.name ?? meta.objectName ?? "object";
-            interactHint.textContent = `[${INTERACTION_KEY}] Interact with ${name}`;
-            interactHint.classList.add("visible");
+            uiInteract.textContent = `  |  Click to know more about ${name}`;
         }
 
         if (autoOpenEnabled && nearbyMesh !== prevNearbyMesh) {
@@ -399,7 +398,7 @@ scene.onBeforeRenderObservable.add(() => {
         }
     } else {
         nearbyMesh = null;
-        if (!isMobile) interactHint.classList.remove("visible");
+        if (!isMobile) uiInteract.textContent = "";
     }
 
     prevNearbyMesh = nearbyMesh;
@@ -407,16 +406,11 @@ scene.onBeforeRenderObservable.add(() => {
 
 // ── KEYDOWN ACTIONS ──────────────────────────────────────────────────────────
 
-window.addEventListener("keydown", (e) => {
-    // Interact
-    if (
-        (e.key.toUpperCase() === INTERACTION_KEY || e.code === INTERACTION_KEY_CODE) &&
-        !popupOpen && nearbyMesh
-    ) {
-        openPopup(nearbyMesh.metadata);
-        return;
-    }
+canvas.addEventListener("click", () => {
+    if (!popupOpen && nearbyMesh) openPopup(nearbyMesh.metadata);
+});
 
+window.addEventListener("keydown", (e) => {
     // Locator toggle
     if (e.key.toUpperCase() === LABEL_TOGGLE_KEY || e.code === LABEL_TOGGLE_KEY_CODE) {
         labelEnabled = !labelEnabled;

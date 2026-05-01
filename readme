@@ -1,1 +1,85 @@
-to elaborate
+## Introduction
+
+PractiCity is group of enthusiastic people promoting experiential learning practices and open source simulators.
+
+Practi.City Microverse is a browser-based 3D world featuring a full city layout—complete with streets, buildings, a nuclear plant, a port, and an airport.
+
+We use this Microverse to organize curated experiential learning resources into an intuitive, navigable environment.
+By pioneering "cross-simulations," we merge diverse learning fields to create collaborative, high-value educational experiences.
+
+## Accesssing the Microverse
+Simply visit : https://microverse.practi.city
+No installation is needed, just a browser and a not too old graphic adapter.
+
+Navigation is differentiated between desktop and mobile versions.
+
+
+## Behind the scene
+
+### The architecture
+The microverse is provided by babylon.js libray. https://github.com/BabylonJS/Babylon.js
+3D Objects are exclusively GLB/GLTF files. https://en.wikipedia.org/wiki/GlTF
+
+### Objects declaration
+
+All objects are uploaded as glb files in one of the /public/assets/ subfolders.
+Their exported glb version must not be bigger than 5 mb for the sake of keeping a fluid navigation.
+
+Their declaration are made in /public/objets and in one of the corresponding json files.
+
+
+#### Buildings
+A building will occupy a normalized length and width (eg : 2x3), correponding to the same number of square on babylon.js grid.
+
+### Infrastructure
+Roads, street, empty grounds, city lights, etc.
+they will have their center located right on their central axis so that they can easily be sitched to the rest of the other objects.
+
+### People
+Nothing to say (yet).
+
+### People
+Nothing to say (yet).
+
+
+### Integration with practicity CMS
+The information given by the Interaction Popup are retrieved directly from https://practi.city/locations thanks to a common ID (eg : DEWEY) via a REST call to the CMS Api (Jekyll).
+Therefore, if no location details exist in the CMS, then no information will be displayed in the interaction popup.
+
+
+### The weather widget
+The weather gadget makes use of 
+
+
+
+
+### Modifying / Creating Items
+Blender is an excellent 3D software. IT easily exports designs in *.glb format. https://www.blender.org/download/
+
+The objects are organised this way : 
+Empties contains meshes
+Each building contains : the building itself, a ground, and often a panel or a sign with the building name
+
+Each building must fit into a square of the grid
+
+
+
+### Limitations
+
+#### File Size
+The acceptable native total size of glb files used in the microverse must remain under 200mb. If this figure goes above, the model will be too slow to download and undersized grapic adapters won't be able to provide a fluid navigation experience or work at all.
+
+#### Lighting
+At this time (april 2026), we couldn't find a descent way to insert dynamic lights in the models. So we got rid of them at all. Still looking for some clues...
+
+
+
+
+
+
+
+
+
+
+
+
