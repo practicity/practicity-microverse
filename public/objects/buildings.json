@@ -53,6 +53,25 @@
 
 
     {
+        "locationid": "BAUDRILLARD",
+        "model": "buildings/baudrillard.glb",
+        "interactive": true,
+        "scale": 1,
+        "rotationY": "Math.PI*1.5",
+        "mapX": -5,
+        "mapY": 7,
+        "mapZ": 0,
+        "cameraStartX": -5.52,
+        "cameraStartY": 6.391,
+        "cameraStartZ": 0.967,
+        "cameraStartPitch": -0.346,
+        "cameraStartYaw": -15.066
+    },
+
+
+
+
+    {
         "locationid": "COURT",
         "model": "buildings/court.glb",
         "interactive": true,
